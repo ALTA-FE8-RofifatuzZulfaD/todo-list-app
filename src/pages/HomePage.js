@@ -62,6 +62,7 @@ const HomePage = () => {
           axios(config)
             .then(function (response) {
             console.log(response.data);
+            getData();
             })
     }
     const handleContent = (e) => {
@@ -87,8 +88,34 @@ const HomePage = () => {
         axios(config)
         .then(function (response) {
         console.log(response.data);
+        getData();
         });
     }
+
+    // // Update Todo
+    // const handleUpdate = (id) => {
+    //     var data = {
+    //         content: editContent,
+    //         description: editDesc,
+    //         due: editDue
+    //       };
+          
+    //       var config = {
+    //         method: 'post',
+    //         url: `https://api.todoist.com/rest/v1/tasks/${id}`,
+    //         headers: { 
+    //           'Authorization': 'Bearer 555a651717577c5d4c23075f51b0368182fc89c0', 
+    //           'Content-Type': 'application/json', 
+    //         },
+    //         data : data
+    //       };
+          
+    //       axios(config)
+    //       .then(function (response) {
+    //         console.log(response.data);
+    //       })
+    // }
+    
 
     // Navigate to detail page
     const goToDetail = (item) => {
@@ -111,18 +138,7 @@ const HomePage = () => {
                 <Search />
             </div>
         </div>
-        <div>
-            {todo.map((item) => {
-                return (
-                    <Todo 
-                        content={item.content}
-                        done={() => handleDelete(item.id)}
-                        detail={() => goToDetail(item)}
-                    />
-                )
-            })}
-        </div>
-        <div>
+        <div className='pb-3'>
         <Button variant="primary" onClick={handleShow}>
             Add Todo
         </Button>
@@ -134,6 +150,18 @@ const HomePage = () => {
             handleDesc={handleDesc}
             handleDue={handleDue}
         />
+        </div>
+        <div className='border-secondary'>
+            {todo.map((item) => {
+                return (
+                    <Todo 
+                        content={item.content}
+                        delete={() => handleDelete(item.id)}
+                        detail={() => goToDetail(item)}
+                        // done={() => handleUpdate(item.content)}
+                    />
+                )
+            })}
         </div>
     </Container>
   )

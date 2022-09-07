@@ -60,26 +60,31 @@ const DetailTodo = () => {
     };
 
   return (
-    <Container className='bg-light pt-5 pb-5'>
+    <Container className='bg-light pt-5 pb-5 w-50'>
     <div >
         <h1 className='text-center'>Your Todo</h1>
-        <h4>{location.state.content}</h4>
-        <p>{location.state.description}</p>
-        <p>{location.state.due_date}</p>
-        <p>{location.state.created}</p>
-        <Button onClick={handleShow}>Edit</Button>
-        <Button onClick={(value) => goBack(value)}>Go Back</Button>
-        <EditTodo 
-            show={show} 
-            handleClose={handleClose} 
-            submit={handleSubmitEditTodo} 
-            content={location.state.content}
-            desc={location.state.description}
-            due_date={location.state.due}
-            handleEditContent={handleEditContent}
-            handleEditDesc={handleEditDesc}
-            handleEditDue={handleEditDue}
-        />
+        <div className='p-5'>
+            <h4>{location.state.content}</h4>
+            <h6>Description :</h6>
+            <p>{location.state.description}</p>
+            <p>{location.state.due_date}</p>
+            <p>Created date : {location.state.created}</p>
+            <div className='d-flex gap-3'>
+                <Button className='bg-secondary border-secondary' onClick={handleShow}>Edit</Button>
+                <Button className='bg-secondary border-secondary' onClick={(value) => goBack(value)}>Go Back</Button>
+            </div>
+            <EditTodo 
+                show={show} 
+                handleClose={handleClose} 
+                submit={handleSubmitEditTodo} 
+                content={location.state.content}
+                desc={location.state.description}
+                due_date={location.state.due}
+                handleEditContent={handleEditContent}
+                handleEditDesc={handleEditDesc}
+                handleEditDue={handleEditDue}
+            />
+        </div>
     </div>
     </Container>
   )
