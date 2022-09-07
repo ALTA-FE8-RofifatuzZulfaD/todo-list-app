@@ -9,6 +9,7 @@ const DetailTodo = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
+    const [newData, setNewData] = useState(location.state)
 
     const goBack = () => {
         navigate(-1);
@@ -23,13 +24,15 @@ const DetailTodo = () => {
     const [editDesc, setEditDesc] = useState();
     const [editDue, setEditDue] = useState();
 
-    const handleSubmitEditTodo = () => {
+    const handleSubmitEditTodo = (e) => {
+      console.log(e)  
+      e.preventDefault();
         var data = {
             content: editContent,
             description: editDesc,
             due: editDue
           };
-          
+          console.log(data)
           var config = {
             method: 'post',
             url: `https://api.todoist.com/rest/v1/tasks/${location.state.id}`,
@@ -43,19 +46,17 @@ const DetailTodo = () => {
           axios(config)
           .then(function (response) {
             console.log(response.data);
+            goBack();
           })
     }
     const handleEditContent = (e) => {
-        e.preventDefault();
         setEditContent(e.target.value);
         console.log(editContent)
     };
     const handleEditDesc = (e) => {
-        e.preventDefault();
         setEditDesc(e.target.value);
     };
     const handleEditDue = (e) => {
-        e.preventDefault();
         setEditDue(e.target.value);
     };
 

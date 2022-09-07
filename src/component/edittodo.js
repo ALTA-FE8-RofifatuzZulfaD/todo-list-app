@@ -10,18 +10,18 @@ const EditTodo = ({show, handleClose, submit, content, desc, due_date, handleEdi
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    <Form onSubmit={() => submit()}>
+                    <Form onSubmit={(e) => submit(e)}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder={content} onChange={(event) => handleEditContent(event.target.value)}/>
+                            <Form.Control type="text" placeholder={content} onChange={(event) => handleEditContent(event)}/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Description</Form.Label>
-                            <Form.Control type="text" placeholder={desc} onChange={(event) => handleEditDesc(event.target.value)}/>
+                            <Form.Control type="text" placeholder={desc} onChange={(event) => handleEditDesc(event)}/>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword" placeholder={due_date} onChange={(event) => handleEditDue(event.target.value)}>
+                        <Form.Group className="mb-3" controlId="formBasicPassword" placeholder={due_date} onChange={(event) => handleEditDue(event)}>
                             <Form.Label>Due Date</Form.Label>
                             <Form.Control type="date" />
                         </Form.Group>
